@@ -1,0 +1,33 @@
+<div class="container">
+    <form>
+        <div class="card">
+            <div class="card-header">
+                <h1>Load Images</h1>
+            </div>
+            <div *ngIf="permissionsForUserResult" class="card-body">
+
+                <div class="form-group">
+                    <label for="functionalAreaId">Functional area</label>
+                    <select id="functionalAreaId" name="functionalAreaId" [(ngModel)]="selectedFunctionalAreaId" (change)="onFunctionalAreaIdChange($event.target.value)" class="form-control">
+                        <option value="0">-- Choose --</option>
+                        <option *ngFor="let functionalArea of functionalAreas" value={{functionalArea.id}} text='{{functionalArea.financeCompany.code}} - {{functionalArea.description}}'></option>
+                    </select>
+                </div>
+
+                <div *ngIf="documentTypes.length > 0" class="form-group">
+                    <label for="documentTypeId">Document type</label>
+                    <select id="documentTypeId" name="documentTypeId" [(ngModel)]="selectedDocumentTypeId" class="form-control">
+                        <option value="0">-- Choose --</option>
+                        <option *ngFor="let documentType of documentTypes" value={{documentType.id}} text='{{documentType.description}}'></option>
+                    </select>
+                </div>
+
+                <div *ngIf="selectedDocumentTypeId != '0'">
+                    <input type="file" multiple class="btn" />
+                    <button class="btn btn-primary">Upload</button>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>
